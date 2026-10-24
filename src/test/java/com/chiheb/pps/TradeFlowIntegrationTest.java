@@ -81,7 +81,7 @@ class TradeFlowIntegrationTest {
         props.put("auto.offset.reset", "earliest");
         try (Consumer<String, String> updates = new DefaultKafkaConsumerFactory<>(props,
                 new StringDeserializer(), new StringDeserializer()).createConsumer()) {
-            broker.consumeFromAnEmbeddedTopic(updates, "position-updates");
+            updates.subscribe(List.of("position-updates"));
             List<String> values = new ArrayList<>();
             long deadline = System.currentTimeMillis() + 15_000;
             while (values.size() < 2 && System.currentTimeMillis() < deadline) {
