@@ -1,0 +1,9 @@
+spring:
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
+  cache:
+    type: simple
+management:
+  health:
+    redis:
+      enabled: false
